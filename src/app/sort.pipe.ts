@@ -5,8 +5,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(value: any, propName: string, order: string): any {
+    return value.sort((a, b) => {
+
+      let direction = 1;
+      if (order === 'DESC') {
+        direction = -1;
+      }
+
+      if (a[propName] > b[propName]) {
+        return (1 * direction);
+      } else {
+        return (-1 * direction);
+      }
+    });
   }
 
 }
